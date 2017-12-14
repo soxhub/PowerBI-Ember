@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/powerbi-report';
-import { TokenType } from 'powerbi-models';
+import { TokenType } from 'npm:powerbi-models';
 
 export default Ember.Component.extend({
   classNames: ['powerbi-frame'],
