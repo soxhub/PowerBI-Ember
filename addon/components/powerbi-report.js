@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/powerbi-report';
-import { TokenType } from 'powerbi-models';
 
 export default Ember.Component.extend({
   classNames: ['powerbi-frame'],
@@ -33,9 +32,9 @@ export default Ember.Component.extend({
         accessToken: this.accessToken,
         id: this.reportId,
         uniqueId: this.name,
-        tokenType: TokenType[this.tokenType] || null
+        tokenType: this.tokenType
     };
-    console.log("Config", config)
+
     Ember.$.extend(config, this.options);
 
     this.component = this.get('powerbi').embed(element, config);
