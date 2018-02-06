@@ -1,5 +1,8 @@
+var RSVP = require('rsvp');
+
 /*jshint node:true*/
 module.exports = {
+  name: 'ember-powerbi',
   description: 'Imports powerbi-client dependency from Bower',
 
   // locals: function(options) {
@@ -8,7 +11,7 @@ module.exports = {
   //     foo: options.entity.options.foo
   //   };
   // }
-  
+
   normalizeEntityName: function() {
     // this prevents an error when the entityName is
     // not specified (since that doesn't actually matter
@@ -16,6 +19,8 @@ module.exports = {
   },
 
   afterInstall: function(options) {
-    return this.addBowerPackageToProject('powerbi-client', 'beta');
+    return RSVP.all([
+      this.addBowerPackageToProject('powerbi-client'),
+    ]);
   }
 };

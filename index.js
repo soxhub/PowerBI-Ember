@@ -10,9 +10,11 @@ module.exports = {
 
   included: function(app) {
     this._super.included.apply(this, arguments);
-    
+
     app.import(app.bowerDirectory + '/powerbi-client/dist/powerbi.min.js');
+    app.import('vendor/powerbi-models.min.js');
     app.import('vendor/shims/powerbi.js');
     app.import('vendor/shims/powerbi-client.js');
+    app.import('vendor/shims/powerbi-models.js');
   }
 };

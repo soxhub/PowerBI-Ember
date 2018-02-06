@@ -5,31 +5,31 @@ const PowerBiComponent = Ember.Component.extend({
   classNames: ['powerbi-frame'],
   layout,
   powerbi: Ember.inject.service('powerbi'),
-  
+
   component: null,
   options: null,
   validationMap: null,
-    
+
   init() {
     this._super(...arguments);
-    
+
     this.set('validationMap', {
         'report': this.validateReportOptions
     });
   },
-  
+
   didInsertElement() {
     this._super(...arguments);
-    
+
     const options = this.get('options');
     if(this.validateOptions(options)) {
       this.embed(this.$(), options);
     }
   },
-  
+
   didUpdateAttrs() {
     this._super(...arguments);
-    
+
     const options = this.get('options');
     if(this.validateOptions(options)) {
       this.embed(this.$(), options);
@@ -38,21 +38,21 @@ const PowerBiComponent = Ember.Component.extend({
       this.reset(this.$());
     }
   },
-  
+
   embed(element, options) {
     this.component = this.get('powerbi').embed(element, options);
     const action = this.get('onEmbedded');
-    
+
     if (action) {
       action(this.component);
     }
   },
-  
+
   reset(element) {
     this.get('powerbi').reset(element);
     this.component = null;
   },
-  
+
   validateOptions(options) {
     if (!options ||
       !(typeof options.embedUrl === 'string' && options.embedUrl.length > 0) ||
@@ -68,11 +68,11 @@ const PowerBiComponent = Ember.Component.extend({
       return false;
     }
   },
-    
+
   validateReportOptions(/* options */) {
       return true;
   },
-  
+
   willDestroyElement() {
     this._super(...arguments);
     this.get('powerbi').reset(this.$());
