@@ -2,19 +2,19 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-powerbi',
+	name: 'ember-powerbi',
 
-  isDevelopingAddon: function() {
-    return true;
-  },
+	isDevelopingAddon: function() {
+		return true;
+	},
 
-  included: function(app) {
-    this._super.included.apply(this, arguments);
+	included: function(app) {
+		this._super.included.apply(this, arguments);
 
-    app.import(app.bowerDirectory + '/powerbi-client/dist/powerbi.min.js');
-    app.import('vendor/powerbi-models.min.js');
-    app.import('vendor/shims/powerbi.js');
-    app.import('vendor/shims/powerbi-client.js');
-    app.import('vendor/shims/powerbi-models.js');
-  }
+		app.import('vendor/powerbi-client/dist/powerbi.min.js');
+		app.import('vendor/powerbi-models.min.js');
+		app.import('vendor/shims/powerbi.js');
+		app.import('vendor/shims/powerbi-client.js');
+		app.import('vendor/shims/powerbi-models.js');
+	}
 };
