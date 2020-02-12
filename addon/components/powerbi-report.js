@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/powerbi-report';
-import models from 'powerbi-models';
+import pbi from 'powerbi-client';
 
 export default Ember.Component.extend({
   classNames: ['powerbi-frame'],
@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   name: null,
   reportId: null,
   options: null,
-  tokenType: models.TokenType.Embed,
+  tokenType: pbi.models.TokenType.Embed,
 
   didRender() {
     this._super(...arguments);
