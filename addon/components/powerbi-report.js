@@ -1,11 +1,14 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import layout from '../templates/components/powerbi-report';
 import pbi from 'powerbi-client';
+import $ from 'jquery';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['powerbi-frame'],
   layout,
-  powerbi: Ember.inject.service('powerbi'),
+  powerbi: service('powerbi'),
 
   accessToken: '',
   component: null,
@@ -35,7 +38,7 @@ export default Ember.Component.extend({
         tokenType: this.tokenType
     };
 
-    Ember.$.extend(config, this.options);
+    $.extend(config, this.options);
 
     this.component = this.get('powerbi').embed(element, config);
     const action = this.get('onEmbedded');
@@ -51,7 +54,7 @@ export default Ember.Component.extend({
   },
 
   validateAttributes() {
-    return !Ember.isEmpty(this.get('embedUrl')) && !Ember.isEmpty(this.get('accessToken'));
+    return !isEmpty(this.get('embedUrl')) && !isEmpty(this.get('accessToken'));
   },
 
   willDestroyElement() {

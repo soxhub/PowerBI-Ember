@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 import layout from '../templates/components/powerbi-component';
+import $ from 'jquery';
 
-const PowerBiComponent = Ember.Component.extend({
+const PowerBiComponent = Component.extend({
   classNames: ['powerbi-frame'],
   layout,
-  powerbi: Ember.inject.service('powerbi'),
+  powerbi: service('powerbi'),
 
   component: null,
   options: null,
@@ -23,7 +25,7 @@ const PowerBiComponent = Ember.Component.extend({
 
     const options = this.get('options');
     if(this.validateOptions(options)) {
-      this.embed(this.$(), options);
+      this.embed($(this.element), options);
     }
   },
 
@@ -32,10 +34,10 @@ const PowerBiComponent = Ember.Component.extend({
 
     const options = this.get('options');
     if(this.validateOptions(options)) {
-      this.embed(this.$(), options);
+      this.embed($(this.element), options);
     }
     else if(this.component) {
-      this.reset(this.$());
+      this.reset($(this.element));
     }
   },
 

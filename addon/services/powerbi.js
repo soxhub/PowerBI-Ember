@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import powerbi from 'powerbi';
 
-export default Ember.Service.extend({
+export default Service.extend({
   powerbi: null,
 
   init() {
